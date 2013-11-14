@@ -20,6 +20,20 @@ public class Examen implements I_Examen{
         this.Profesor = Profesor;
     }
 
+    public String getID() {
+        return ID;
+    }
+
+    public String getMateria() {
+        return Materia;
+    }
+
+    public String getProfesor() {
+        return Profesor;
+    }
+
+    
+    
     public void SET_Seccion(I_Seccion nn){
         this.Secciones.add(nn);
     }

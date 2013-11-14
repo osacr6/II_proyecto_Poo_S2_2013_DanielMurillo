@@ -7,21 +7,18 @@ package UI;
 import Estructuras_de_datos.I_Seccion;
 import java.util.ArrayList;
 
-/**
- *
- * @author Soporte
- */
+
 public class V_Examen extends javax.swing.JFrame {
-    private static Principal Instacia;
+    private Principal Instacia;
     static int IDexamen;
 
     /**
      * Creates new form V_Examen
      */
-    public V_Examen() {
+    public V_Examen(Principal controlador) {
         initComponents();
-        Instacia= new Principal();
         IDexamen=-1;
+        Instacia=controlador;
     }
 
     /**
@@ -49,8 +46,6 @@ public class V_Examen extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("ID");
 
