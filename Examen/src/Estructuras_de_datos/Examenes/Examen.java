@@ -1,7 +1,8 @@
-package Estructuras_de_datos;
+package Estructuras_de_datos.Examenes;
 
 //clase examenes
 
+import Estructuras_de_datos.Seccciones.I_Seccion;
 import java.util.ArrayList;
 
 public class Examen implements I_Examen{
@@ -18,6 +19,7 @@ public class Examen implements I_Examen{
         this.ID = ID;
         this.Materia = Materia;
         this.Profesor = Profesor;
+        Secciones= new ArrayList<I_Seccion>();
     }
 
     public String getID() {
@@ -30,14 +32,16 @@ public class Examen implements I_Examen{
 
     public String getProfesor() {
         return Profesor;
-    }
-
-    
+    }   
     
     public void SET_Seccion(I_Seccion nn){
         this.Secciones.add(nn);
     }
-    public ArrayList<I_Seccion> GET_Secciones(){
-        return this.Secciones;
+    public I_Seccion GET_Seccion(int index){
+        return this.Secciones.get(index);
+    }
+    
+    public int GET_Secciones_size(){
+        return this.Secciones.size();
     }
 }

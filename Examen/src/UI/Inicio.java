@@ -3,7 +3,6 @@
  * and open the template in the editor.
  */
 package UI;
-import java.util.ArrayList;
 
 public class Inicio extends javax.swing.JFrame {
     private static Principal Instacia;
@@ -112,7 +111,7 @@ public class Inicio extends javax.swing.JFrame {
 
     private void jMenu3MenuSelected(javax.swing.event.MenuEvent evt) {//GEN-FIRST:event_jMenu3MenuSelected
         // TODO add your handling code here:
-        V_Examen nnE= new V_Examen(Instacia);
+        V_Examen nnE= new V_Examen(Instacia,-1);
         nnE.setVisible(true);
     }//GEN-LAST:event_jMenu3MenuSelected
 
@@ -133,6 +132,11 @@ public class Inicio extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
+   public boolean isCellEditable(int row, int column) {
+         return false;
+     }
+    
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
