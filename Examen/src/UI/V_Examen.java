@@ -60,6 +60,12 @@ public class V_Examen extends javax.swing.JFrame {
 
         jLabel3.setText("Profesor");
 
+        jTextField1.setText("s2");
+
+        jTextField2.setText("poo");
+
+        jTextField3.setText("viquez");
+
         jLabel4.setText("Secciones");
 
         jButton1.setText("Guardar");
@@ -75,6 +81,8 @@ public class V_Examen extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
+
+        jTextField4.setText("Marque Con x");
 
         jButton3.setText("Agregar");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -184,8 +192,11 @@ public class V_Examen extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        Instacia.Add_seccion(jTextField4.getText(), IDexamen);
-       jTable1.setModel(Instacia.GET_secciones(IDexamen));
+        if(IDexamen>-1)
+        {
+            Instacia.Add_seccion(jTextField4.getText(), IDexamen);
+            jTable1.setModel(Instacia.GET_secciones(IDexamen));
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated

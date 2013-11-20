@@ -43,6 +43,11 @@ public class Inicio extends javax.swing.JFrame {
         jLabel1.setText("Examenes");
 
         jButton1.setText("Editar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Evaluar");
 
@@ -128,6 +133,12 @@ public class Inicio extends javax.swing.JFrame {
              System.out.println("Selected: " + (String) jTable1.getValueAt(row,col));
         }
     }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        V_Examen nnE= new V_Examen(Instacia,-1);
+        nnE.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

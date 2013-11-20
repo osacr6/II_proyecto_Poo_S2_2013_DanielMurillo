@@ -4,11 +4,17 @@
  */
 package UI;
 
+import static UI.V_Examen.IDexamen;
+import java.awt.event.KeyEvent;
+import javax.swing.SwingUtilities;
+
 public class V_Pregunta extends javax.swing.JFrame {
     private Principal Instacia;
     static int IDexamen;
     static int IDsecccion;
     private int IDpregunta;
+    private int IDrespuesta;
+    
 
     /**
      * Creates new form V_Pregunta
@@ -19,6 +25,7 @@ public class V_Pregunta extends javax.swing.JFrame {
         IDexamen=IDex;
         IDsecccion=IDsec;
         IDpregunta=-1;
+        IDrespuesta=-1;
     }
 
     /**
@@ -54,12 +61,11 @@ public class V_Pregunta extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
         jLabel1.setText("Pregunta");
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
+        jTextArea1.setText("En que Parte del Mundo esta carmen san diego?");
         jScrollPane1.setViewportView(jTextArea1);
 
         jLabel2.setText("Interfaz");
@@ -70,9 +76,19 @@ public class V_Pregunta extends javax.swing.JFrame {
 
         jTextArea2.setColumns(20);
         jTextArea2.setRows(5);
+        jTextArea2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextArea2KeyReleased(evt);
+            }
+        });
         jScrollPane3.setViewportView(jTextArea2);
 
         jButton2.setText("Siguiente");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jCheckBox1.setText("Correcta");
 
@@ -107,7 +123,7 @@ public class V_Pregunta extends javax.swing.JFrame {
 
         jLabel5.setText("Puntos");
 
-        jButton5.setText("x");
+        jButton5.setText("Anterior");
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
@@ -122,7 +138,7 @@ public class V_Pregunta extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(39, 39, 39)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -147,24 +163,20 @@ public class V_Pregunta extends javax.swing.JFrame {
                                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton1))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 525, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabel4)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jTextField2))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(212, 212, 212)
-                                                .addComponent(jButton2)
-                                                .addGap(0, 0, Short.MAX_VALUE)))
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jButton3)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(30, Short.MAX_VALUE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 525, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel4)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jTextField2)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jButton3)))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButton5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton2)))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -196,19 +208,17 @@ public class V_Pregunta extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         pack();
@@ -220,9 +230,10 @@ public class V_Pregunta extends javax.swing.JFrame {
         if(IDpregunta==-1)
         {
             IDpregunta=Instacia.SET_pregunta(IDexamen,IDsecccion,jTextArea1.getText(),Integer.parseInt(jSpinner1.getValue().toString()));
-           if(IDpregunta>-1)
+           if((IDpregunta>-1)&&(jTextArea2.getText()!=""))
            {
                Instacia.SET_Respuesta(IDexamen,IDsecccion,IDpregunta,jTextArea2.getText(),jCheckBox1.isSelected());
+               jCheckBox1.setSelected(false);
                jTable1.setModel(
                        Instacia.get_Respuestas(IDexamen,IDsecccion,IDpregunta)  
                        );               
@@ -230,9 +241,10 @@ public class V_Pregunta extends javax.swing.JFrame {
         }
         else
         {
-            if(IDpregunta>-1)
+            if((IDpregunta>-1)&&(jTextArea2.getText()!=""))
            {
                Instacia.SET_Respuesta(IDexamen,IDsecccion,IDpregunta,jTextArea2.getText(),jCheckBox1.isSelected());
+               jCheckBox1.setSelected(false);
                jTable1.setModel(
                        Instacia.get_Respuestas(IDexamen,IDsecccion,IDpregunta)  
                        );               
@@ -246,9 +258,34 @@ public class V_Pregunta extends javax.swing.JFrame {
         int row = jTable1.rowAtPoint(evt.getPoint());
         int col = jTable1.columnAtPoint(evt.getPoint());
         if (row >= 0 && col >= 0) {
-             System.out.println("Selected: " + (String) jTable1.getValueAt(row,0));
+             IDrespuesta=Integer.parseInt(jTable1.getValueAt(row,0).toString());
+             jTextArea2.setText(jTable1.getValueAt(row,1).toString());
+             jButton4.setText("Editar");
+             if(jTable1.getValueAt(row,2).toString()=="true")
+                 jCheckBox1.setSelected(true);
+        }
+        if(SwingUtilities.isRightMouseButton(evt)){
+            if(IDrespuesta>-1)
+            {
+                Instacia.delete_Respuesta(IDexamen,IDsecccion,IDpregunta,IDrespuesta);
+                jTable1.setModel(
+                       Instacia.get_Respuestas(IDexamen,IDsecccion,IDpregunta)  
+                       );
+            }
         }
     }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jTextArea2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextArea2KeyReleased
+        // TODO add your handling code here:
+            if(jTextArea2.getText().equals(""))
+            {
+                jButton4.setText("agregar");
+            }
+    }//GEN-LAST:event_jTextArea2KeyReleased
 
     /**
      * @param args the command line arguments

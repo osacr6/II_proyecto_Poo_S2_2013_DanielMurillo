@@ -37,4 +37,9 @@ public class Pregunta implements I_Pregunta{
         return this.Respuestas.size();
     }
     
+    public boolean DeleteThisRespuesta(int ID)
+    {
+       return  Respuestas.remove(Respuestas.get(ID));
+    }
+    
 }

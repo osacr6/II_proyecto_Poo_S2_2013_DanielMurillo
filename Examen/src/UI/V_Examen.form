@@ -152,10 +152,19 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextField1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="s2"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextField2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="poo"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextField3">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="viquez"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
@@ -179,6 +188,9 @@
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextField4">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Marque Con x"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jButton3">
       <Properties>

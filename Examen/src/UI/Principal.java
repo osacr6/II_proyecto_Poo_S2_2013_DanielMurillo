@@ -145,6 +145,22 @@ public class Principal {
         }
     }
     
+        // teniendo bien claro el examen,la seccion y la pregunta y la respuesta se procede a eliminarla
+    public void delete_Respuesta(int IDexamen,int IDseccion,int IDpregunta,int IDrespuesta)
+    {
+        if(this.Examenes.size()>0)            
+        {
+            if(this.Examenes.get(IDexamen).GET_Secciones_size()>=0)
+            {
+                if(this.Examenes.get(IDexamen).GET_Seccion(IDseccion).getPreguntas_size()>=0)
+                {
+                    this.Examenes.get(IDexamen).GET_Seccion(IDseccion).getPregunta(IDpregunta).DeleteThisRespuesta(IDrespuesta); 
+                }
+            }
+        }
+    }
+    
+    
     public DefaultTableModel get_Respuestas(int IDexamen,int IDseccion,int IDpregunta)
     {
         DefaultTableModel  model = new DefaultTableModel();
