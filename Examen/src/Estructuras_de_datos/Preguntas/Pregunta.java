@@ -23,6 +23,10 @@ public class Pregunta implements I_Pregunta{
         Respuestas= new ArrayList<I_Respuesta>();
     }
 
+    public String getPregunta() {
+        return Pregunta;
+    }
+    
     public void setRespuestas(I_Respuesta Respuestas) {
         this.Respuestas.add(Respuestas);
     }

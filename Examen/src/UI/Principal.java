@@ -35,6 +35,25 @@ public class Principal {
         return this.Examenes.size()-1;
     }
     
+    public int Get_Examen_ID(String ID)
+    {
+        int result=-1;
+        for(int i=0;i<this.Examenes.size();i++){
+            if(this.Examenes.get(i).getID().equals(ID))
+                result=i;
+        }
+        return result;
+    }
+    
+    public String[] Get_Examen(int ID)
+    {
+        String[] result= new String[3];
+        result[0]= this.Examenes.get(ID).getID();
+        result[1]= this.Examenes.get(ID).getMateria();
+        result[2]= this.Examenes.get(ID).getProfesor();
+        return result;
+    }
+    
     //optiene todos los examenes
     public DefaultTableModel Get_Examenes()
     {
@@ -62,6 +81,13 @@ public class Principal {
     public void Add_seccion(String _seccion,int IDexamen){
         I_Seccion nn= new Seccion(_seccion);
         this.Examenes.get(IDexamen).SET_Seccion(nn);
+    }
+    
+    public int seccion_size(int IDexamen,int IDseccion){
+        if((IDexamen>-1)&&(IDseccion>-1))
+            return this.Examenes.get(IDexamen).GET_Secciones_size();
+        else
+            return -1;
     }
     
     //tabla de todas las las secciones en un examen
@@ -122,6 +148,22 @@ public class Principal {
         return result;
     }
     
+    public String Get_pregunta(int IDexamen,int IDseccion,int IDpregunta)
+    {
+        String result="";
+        if(this.Examenes.size()>0)            
+        {
+            if(this.Examenes.get(IDexamen).GET_Secciones_size()>0)
+            {
+                if(this.Examenes.get(IDexamen).GET_Seccion(IDseccion).getPreguntas_size()>0)
+                {
+                    result=this.Examenes.get(IDexamen).GET_Seccion(IDseccion).getPregunta(IDpregunta).getPregunta();
+                }
+            }        
+        }
+        return result;
+    }
+    
     
         ////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////
@@ -169,9 +211,9 @@ public class Principal {
         model.addColumn("Correcta");  
         if(this.Examenes.size()>0)            
         {
-            if(this.Examenes.get(IDexamen).GET_Secciones_size()>=0)
+            if(this.Examenes.get(IDexamen).GET_Secciones_size()>0)
             {
-                if(this.Examenes.get(IDexamen).GET_Seccion(IDseccion).getPreguntas_size()>=0)
+                if(this.Examenes.get(IDexamen).GET_Seccion(IDseccion).getPreguntas_size()>0)
                 {
                      Object[] _row = new Object[3];
                     for(int i=0;i< this.Examenes.get(IDexamen).GET_Seccion(IDseccion).getPregunta(IDpregunta).getRespuestas_size();i++)
@@ -186,5 +228,4 @@ public class Principal {
         }
         return model;
     }
-    
 }

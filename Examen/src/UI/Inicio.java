@@ -4,8 +4,11 @@
  */
 package UI;
 
+import static UI.V_Examen.IDexamen;
+
 public class Inicio extends javax.swing.JFrame {
     private static Principal Instacia;
+    static int IDexamen;
     /**
      * Creates new form Inicio
      */
@@ -130,14 +133,16 @@ public class Inicio extends javax.swing.JFrame {
         int row = jTable1.rowAtPoint(evt.getPoint());
         int col = jTable1.columnAtPoint(evt.getPoint());
         if (row >= 0 && col >= 0) {
-             System.out.println("Selected: " + (String) jTable1.getValueAt(row,col));
+             IDexamen=Instacia.Get_Examen_ID(jTable1.getValueAt(row,0).toString());
         }
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        V_Examen nnE= new V_Examen(Instacia,-1);
-        nnE.setVisible(true);
+        if(IDexamen>-1){
+            V_Examen nnE= new V_Examen(Instacia,IDexamen);
+            nnE.setVisible(true);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

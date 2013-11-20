@@ -20,6 +20,13 @@ public class V_Examen extends javax.swing.JFrame {
         initComponents();
         IDexamen=ID;
         Instacia=controlador;
+        IDseccion=-1;
+        if(IDexamen>-1){
+             jTable1.setModel(Instacia.GET_secciones(IDexamen));
+             jTextField1.setText(Instacia.Get_Examen(IDexamen)[0]);
+             jTextField2.setText(Instacia.Get_Examen(IDexamen)[1]);
+             jTextField3.setText(Instacia.Get_Examen(IDexamen)[2]);             
+        }
     }
 
     /**
@@ -215,8 +222,10 @@ public class V_Examen extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        V_Pregunta nnP= new V_Pregunta(Instacia, IDexamen, IDseccion);
-        nnP.setVisible(true);
+        if(IDseccion>-1){
+            V_Pregunta nnP= new V_Pregunta(Instacia, IDexamen, IDseccion);
+            nnP.setVisible(true);
+        }
         
     }//GEN-LAST:event_jButton2ActionPerformed
 
