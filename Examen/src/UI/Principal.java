@@ -7,15 +7,10 @@ import Estructuras_de_datos.Examenes.I_Examen;
 import Estructuras_de_datos.Examenes.Examen;
 import Estructuras_de_datos.Preguntas.I_Pregunta;
 import Estructuras_de_datos.Preguntas.Pregunta;
-import Estructuras_de_datos.Respuestas.I_Respuesta;
-import Estructuras_de_datos.Respuestas.Respuesta;
-import com.sun.rowset.internal.Row;
 import java.util.ArrayList;
-import javax.swing.DefaultListModel;
-import javax.swing.JCheckBox;
 import javax.swing.table.DefaultTableModel;
 
-public class Principal {
+public class Principal{
     public static ArrayList<I_Examen> Examenes;
 
     public Principal() {
@@ -85,7 +80,7 @@ public class Principal {
     
     public int seccion_size(int IDexamen,int IDseccion){
         if((IDexamen>-1)&&(IDseccion>-1))
-            return this.Examenes.get(IDexamen).GET_Secciones_size();
+            return this.Examenes.get(IDexamen).GET_Seccion(IDseccion).getPreguntas_size();
         else
             return -1;
     }
@@ -180,8 +175,8 @@ public class Principal {
             {
                 if(this.Examenes.get(IDexamen).GET_Seccion(IDseccion).getPreguntas_size()>=0)
                 {
-                    I_Respuesta nn= new Respuesta(_respuesta, correcta);
-                    this.Examenes.get(IDexamen).GET_Seccion(IDseccion).getPregunta(IDpregunta).setRespuestas(nn);
+                    I_Pregunta test=this.Examenes.get(IDexamen).GET_Seccion(IDseccion).getPregunta(IDpregunta);
+                    test.setRespuestas(_respuesta, correcta);
                 }
             }
         }
@@ -202,18 +197,17 @@ public class Principal {
         }
     }
     
-    
     public DefaultTableModel get_Respuestas(int IDexamen,int IDseccion,int IDpregunta)
     {
         DefaultTableModel  model = new DefaultTableModel();
         model.addColumn("Numero");
         model.addColumn("Respuesta");  
         model.addColumn("Correcta");  
-        if(this.Examenes.size()>0)            
+        if((this.Examenes.size()>0)&&(IDexamen>-1))        
         {
-            if(this.Examenes.get(IDexamen).GET_Secciones_size()>0)
+            if((this.Examenes.get(IDexamen).GET_Secciones_size()>0)&&(IDseccion>-1))      
             {
-                if(this.Examenes.get(IDexamen).GET_Seccion(IDseccion).getPreguntas_size()>0)
+                if((this.Examenes.get(IDexamen).GET_Seccion(IDseccion).getPreguntas_size()>0)&&(IDpregunta>-1))
                 {
                      Object[] _row = new Object[3];
                     for(int i=0;i< this.Examenes.get(IDexamen).GET_Seccion(IDseccion).getPregunta(IDpregunta).getRespuestas_size();i++)

@@ -73,7 +73,6 @@ public class V_Pregunta extends javax.swing.JFrame {
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
-        jTextArea1.setText("En que Parte del Mundo esta carmen san diego?");
         jScrollPane1.setViewportView(jTextArea1);
 
         jLabel3.setText("Posibles respuestas");
@@ -128,6 +127,11 @@ public class V_Pregunta extends javax.swing.JFrame {
         jLabel5.setText("Puntos");
 
         jButton5.setText("Anterior");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jLabel6.setText("500");
 
@@ -188,7 +192,7 @@ public class V_Pregunta extends javax.swing.JFrame {
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel8)))
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -248,7 +252,9 @@ public class V_Pregunta extends javax.swing.JFrame {
                jCheckBox1.setSelected(false);
                jTable1.setModel(
                        Instacia.get_Respuestas(IDexamen,IDsecccion,IDpregunta)  
-                       );               
+                       );
+              jLabel8.setText(String.valueOf(Instacia.seccion_size(IDexamen,IDsecccion)));
+              jTextArea2.setText("");
            }
         }
         else
@@ -260,6 +266,7 @@ public class V_Pregunta extends javax.swing.JFrame {
                jTable1.setModel(
                        Instacia.get_Respuestas(IDexamen,IDsecccion,IDpregunta)  
                        );               
+                jLabel8.setText(String.valueOf(Instacia.seccion_size(IDexamen,IDsecccion)));
            }
         }
         
@@ -293,15 +300,20 @@ public class V_Pregunta extends javax.swing.JFrame {
          {
             if(Integer.parseInt(jLabel6.getText()) < Integer.parseInt(jLabel8.getText()))
             {
-                if(Integer.parseInt(jLabel6.getText())+1 >= Integer.parseInt(jLabel8.getText()))
+                if(Integer.parseInt(jLabel6.getText())+1 == Integer.parseInt(jLabel8.getText()))
                 {
+                    IDpregunta=-1;
                     jTextArea1.setText("");
+                    jLabel6.setText(String.valueOf(Integer.parseInt(jLabel6.getText())+1));
+                    jLabel8.setText(String.valueOf(Instacia.seccion_size(IDexamen,IDsecccion)));
                     jTable1.setModel(Instacia.get_Respuestas(-1,-1,-1));
                 }
                 else
                 {
-                     jTextArea1.setText(Instacia.Get_pregunta(IDexamen,IDsecccion,Integer.parseInt(jLabel6.getText())+1));
-                     jTable1.setModel(Instacia.get_Respuestas(IDexamen,IDsecccion,Integer.parseInt(jLabel6.getText())+1));
+                     jLabel6.setText(String.valueOf(Integer.parseInt(jLabel6.getText())+1));
+                     jLabel8.setText(String.valueOf(Instacia.seccion_size(IDexamen,IDsecccion)));
+                     jTextArea1.setText(Instacia.Get_pregunta(IDexamen,IDsecccion,Integer.parseInt(jLabel6.getText())));
+                     jTable1.setModel(Instacia.get_Respuestas(IDexamen,IDsecccion,Integer.parseInt(jLabel6.getText())));
                  }
             }
          }
@@ -314,6 +326,24 @@ public class V_Pregunta extends javax.swing.JFrame {
                 jButton4.setText("agregar");
             }
     }//GEN-LAST:event_jTextArea2KeyReleased
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        if((IDsecccion>-1)&&(IDexamen>-1))
+         {
+            if(Integer.parseInt(jLabel6.getText()) <= Integer.parseInt(jLabel8.getText()))
+            {
+                if(Integer.parseInt(jLabel6.getText())-1 > -1)
+                {
+                    IDpregunta=Integer.parseInt(jLabel6.getText())-1;
+                    jTextArea1.setText(Instacia.Get_pregunta(IDexamen,IDsecccion,IDpregunta));
+                    jLabel6.setText(String.valueOf(IDpregunta));
+                    jLabel8.setText(String.valueOf(Instacia.seccion_size(IDexamen,IDsecccion)));
+                    jTable1.setModel(Instacia.get_Respuestas(IDexamen,IDsecccion,IDpregunta));
+                }
+            }
+         }
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments

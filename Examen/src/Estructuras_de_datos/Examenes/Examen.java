@@ -12,7 +12,7 @@ public class Examen implements I_Examen{
     private String Materia;
     private String Profesor;
     private int Nota;
-    private static ArrayList<I_Seccion> Secciones;
+    private  ArrayList<I_Seccion> Secciones;
 
     /* constructor de examen*/
     public Examen(String ID, String Materia, String Profesor) {

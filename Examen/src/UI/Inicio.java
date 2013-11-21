@@ -4,6 +4,7 @@
  */
 package UI;
 
+import Secciones.EvaluarExamen;
 import static UI.V_Examen.IDexamen;
 
 public class Inicio extends javax.swing.JFrame {
@@ -53,6 +54,11 @@ public class Inicio extends javax.swing.JFrame {
         });
 
         jButton2.setText("Evaluar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -65,12 +71,12 @@ public class Inicio extends javax.swing.JFrame {
 
         jMenu3.setText("Nuevo Examen");
         jMenu3.addMenuListener(new javax.swing.event.MenuListener() {
-            public void menuDeselected(javax.swing.event.MenuEvent evt) {
-            }
             public void menuCanceled(javax.swing.event.MenuEvent evt) {
             }
             public void menuSelected(javax.swing.event.MenuEvent evt) {
                 jMenu3MenuSelected(evt);
+            }
+            public void menuDeselected(javax.swing.event.MenuEvent evt) {
             }
         });
         jMenu1.add(jMenu3);
@@ -144,6 +150,14 @@ public class Inicio extends javax.swing.JFrame {
             nnE.setVisible(true);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        if(IDexamen>-1){
+            EvaluarExamen nnE= new EvaluarExamen(Instacia,IDexamen);
+            nnE.setVisible(true);
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -9,7 +9,7 @@ public class Seccion implements I_Seccion{
     private String Nombre;
     private int Puntos;
     private int Obtenidos;
-    private static ArrayList<I_Pregunta> Preguntas;
+    private  ArrayList<I_Pregunta> Preguntas;
 
     public Seccion(String Nombre) {
         this.Nombre = Nombre;
@@ -45,13 +45,12 @@ public class Seccion implements I_Seccion{
     
     public I_Pregunta getPregunta(int ID)
     {
-        if(this.Preguntas.size()>=0)
+        if(ID<this.Preguntas.size())
         {
             return this.Preguntas.get(ID);
         }
         else
             return null;
     }
-    
-    
+     
 }

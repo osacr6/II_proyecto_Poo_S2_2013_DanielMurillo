@@ -5,16 +5,16 @@
 package Estructuras_de_datos.Preguntas;
 
 import Estructuras_de_datos.Respuestas.I_Respuesta;
-import Secciones.I_GUI_Pregunta;
+import Estructuras_de_datos.Respuestas.Respuesta;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 
 public class Pregunta implements I_Pregunta{
     private String Pregunta;
     private int Puntos;
-    private static ArrayList<I_Respuesta> Respuestas;
+    private  ArrayList<I_Respuesta> Respuestas;
     private boolean Estado;
-    private I_GUI_Pregunta UI; 
+    //private I_GUI_Pregunta UI; 
 
     public Pregunta(String Pregunta, int Puntos) {
         this.Pregunta = Pregunta;
@@ -27,8 +27,9 @@ public class Pregunta implements I_Pregunta{
         return Pregunta;
     }
     
-    public void setRespuestas(I_Respuesta Respuestas) {
-        this.Respuestas.add(Respuestas);
+    public void setRespuestas(String Respuesta, boolean RespuestaCorrecta) {
+       I_Respuesta nn= new Respuesta(Respuesta, RespuestaCorrecta);
+        this.Respuestas.add(nn);
     }
     
     public I_Respuesta getRespuesta(int ID)
@@ -45,5 +46,4 @@ public class Pregunta implements I_Pregunta{
     {
        return  Respuestas.remove(Respuestas.get(ID));
     }
-    
 }
