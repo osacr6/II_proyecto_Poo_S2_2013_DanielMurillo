@@ -2,13 +2,11 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Secciones;
+
 
 import UI.Principal;
-import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JFileChooser;
 import javax.swing.JInternalFrame;
 import javax.swing.table.DefaultTableModel;
 
@@ -19,8 +17,6 @@ public class EvaluarExamen extends javax.swing.JFrame {
     private Principal Instacia;
     static int IDexamen;
     public int IDseccion;
-    private int IDpregunta;
-    private int IDrespuesta;
     /**
      * Creates new form EvaluarExamen
      */
@@ -29,8 +25,6 @@ public class EvaluarExamen extends javax.swing.JFrame {
         IDexamen=ID;
         Instacia=controlador;
         IDseccion=-1;
-        IDpregunta=-1;
-        IDrespuesta=-1;
         if(IDexamen>-1){
              jLabel1.setText(Instacia.Get_Examen(IDexamen)[0]);
              jLabel2.setText(Instacia.Get_Examen(IDexamen)[1]);
@@ -203,16 +197,24 @@ public class EvaluarExamen extends javax.swing.JFrame {
             try {
                 JInternalFrame j = (JInternalFrame)c.newInstance(); 
                 jDesktopPane1.add(j);
-                ((I_Controlador) j).Set_datos(Instacia, IDexamen, IDseccion, IDpregunta);
-     
-            } catch (InstantiationException ex) {
+                if(Integer.parseInt(jLabel7.getText()) < Integer.parseInt(jLabel9.getText()))
+                {
+                    ((I_Controlador) j).Set_datos(Instacia, IDexamen, IDseccion, Integer.parseInt(jLabel7.getText()));     
+                }
+            }
+            catch (InstantiationException ex)
+            {
                 Logger.getLogger(EvaluarExamen.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IllegalAccessException ex) {
+            } 
+            catch (IllegalAccessException ex) 
+            {
                 Logger.getLogger(EvaluarExamen.class.getName()).log(Level.SEVERE, null, ex);
             }              
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(EvaluarExamen.class.getName()).log(Level.SEVERE, null, ex);
             }
+        catch (ClassNotFoundException ex)
+        {
+                Logger.getLogger(EvaluarExamen.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

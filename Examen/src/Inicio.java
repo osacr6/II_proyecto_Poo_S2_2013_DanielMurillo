@@ -1,11 +1,11 @@
+
+import UI.Principal;
+import UI.V_Examen;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package UI;
-
-import Secciones.EvaluarExamen;
-import static UI.V_Examen.IDexamen;
 
 public class Inicio extends javax.swing.JFrame {
     private static Principal Instacia;

@@ -1,10 +1,9 @@
-package Secciones;
 
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-import Secciones.I_Controlador;
+import UI.Principal;
 import UI.Principal;
 
 public class Seleccion_Unica extends javax.swing.JInternalFrame implements I_Controlador{
@@ -29,6 +28,7 @@ public class Seleccion_Unica extends javax.swing.JInternalFrame implements I_Con
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jLabel2 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jRadioButton1 = new javax.swing.JRadioButton();
@@ -56,10 +56,13 @@ public class Seleccion_Unica extends javax.swing.JInternalFrame implements I_Con
         jLabel2.setText("jLabel2");
         jLabel2.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
+        buttonGroup1.add(jRadioButton1);
         jRadioButton1.setText("jRadioButton1");
 
+        buttonGroup1.add(jRadioButton2);
         jRadioButton2.setText("jRadioButton2");
 
+        buttonGroup1.add(jRadioButton3);
         jRadioButton3.setText("jRadioButton3");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -92,7 +95,7 @@ public class Seleccion_Unica extends javax.swing.JInternalFrame implements I_Con
                 .addComponent(jRadioButton2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jRadioButton3)
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
 
         pack();
@@ -107,6 +110,7 @@ public class Seleccion_Unica extends javax.swing.JInternalFrame implements I_Con
     }//GEN-LAST:event_formInternalFrameOpened
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;

@@ -1,5 +1,3 @@
-package Secciones;
-
 
 /*
  * To change this template, choose Tools | Templates
