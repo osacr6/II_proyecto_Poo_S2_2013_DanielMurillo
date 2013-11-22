@@ -8,7 +8,6 @@ public interface I_Seccion {
      public String getNombre();
      public boolean getSeccion_ID(String _nombre);
      public File[] getGUI();
-     public int getPuntos() ;
      public void setPreguntas(I_Pregunta _Pregunta) ;
      public int getPreguntas_size();
      public I_Pregunta getPregunta(int ID);

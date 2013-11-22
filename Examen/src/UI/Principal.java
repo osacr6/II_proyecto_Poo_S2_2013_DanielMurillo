@@ -90,7 +90,7 @@ public class Principal{
             Object[] _row = new Object[2];
             for (int i=0; i< this.Examenes.get(IDexamen).GET_Secciones_size(); i++) {
                 _row[0]= this.Examenes.get(IDexamen).GET_Seccion(i).getNombre();
-                _row[1]= this.Examenes.get(IDexamen).GET_Seccion(i).getPuntos();
+                _row[1]= 0;
                 model.addRow(_row);
             }
         }
