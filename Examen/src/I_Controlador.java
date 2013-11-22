@@ -5,6 +5,6 @@
  */
 import UI.Principal;
 
-public interface I_Controlador {    
-    public void Set_datos(Principal controlador,int IDexaman,int IDseccion,int IDpregunta);    
+public interface I_Controlador {
+    public void Set_datos(Principal controlador,int IDexaman,int IDseccion,int IDpregunta); 
 }

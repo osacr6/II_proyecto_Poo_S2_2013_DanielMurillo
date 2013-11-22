@@ -78,13 +78,6 @@ public class Principal{
         this.Examenes.get(IDexamen).SET_Seccion(nn);
     }
     
-    public int seccion_size(int IDexamen,int IDseccion){
-        if((IDexamen>-1)&&(IDseccion>-1))
-            return this.Examenes.get(IDexamen).GET_Seccion(IDseccion).getPreguntas_size();
-        else
-            return -1;
-    }
-    
     //tabla de todas las las secciones en un examen
     public DefaultTableModel GET_secciones(int IDexamen){ 
         DefaultTableModel  model = new DefaultTableModel();
@@ -143,6 +136,22 @@ public class Principal{
         return result;
     }
     
+        // teniendo bien claro el examen,la seccion y la pregunta se inserta la respuesta
+    public void SET_Pregunta_Evaluada(int IDexamen,int IDseccion,int IDpregunta,int IDrespuesta,boolean Estado)
+    {
+        if(this.Examenes.size()>0)            
+        {
+            if(this.Examenes.get(IDexamen).GET_Secciones_size()>=0)
+            {
+                if(this.Examenes.get(IDexamen).GET_Seccion(IDseccion).getPreguntas_size()>=0)
+                {
+                    this.Examenes.get(IDexamen).GET_Seccion(IDseccion).getPregunta(IDpregunta).Set_Respuesta_Evaluada(IDrespuesta, Estado);
+                }
+            }
+        }
+    }
+    
+    
     public String Get_pregunta(int IDexamen,int IDseccion,int IDpregunta)
     {
         String result="";
@@ -159,6 +168,12 @@ public class Principal{
         return result;
     }
     
+    public int Get_Preguntas_size(int IDexamen,int IDseccion){
+        if((IDexamen>-1)&&(IDseccion>-1))
+            return this.Examenes.get(IDexamen).GET_Seccion(IDseccion).getPreguntas_size();
+        else
+            return -1;
+    }
     
         ////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////
@@ -181,6 +196,7 @@ public class Principal{
             }
         }
     }
+   
     
         // teniendo bien claro el examen,la seccion y la pregunta y la respuesta se procede a eliminarla
     public void delete_Respuesta(int IDexamen,int IDseccion,int IDpregunta,int IDrespuesta)
@@ -222,4 +238,54 @@ public class Principal{
         }
         return model;
     }
+    
+    // teniendo bien claro el examen,la seccion y la pregunta y la respuesta se procede a eliminarla
+    public int GET_Respuestas_Size(int IDexamen,int IDseccion,int IDpregunta)
+    {
+        int result=-1;
+        if(this.Examenes.size()>0)            
+        {
+            if(this.Examenes.get(IDexamen).GET_Secciones_size()>=0)
+            {
+                if(this.Examenes.get(IDexamen).GET_Seccion(IDseccion).getPreguntas_size()>=0)
+                {
+                    return this.Examenes.get(IDexamen).GET_Seccion(IDseccion).getPregunta(IDpregunta).getRespuestas_size();
+                }
+            }
+        }
+        return result;
+    }
+
+
+
+        ////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////
+        //////////////////////////NOta//////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////
+
+
+    public int Get_Nota(int IDexamen)
+    {
+        int[] result= new int[]{0,0};
+        if((this.Examenes.size()>0)&&(IDexamen>-1))            
+        {
+            for(int s=0;s<this.Examenes.get(IDexamen).GET_Secciones_size();s++)
+            {
+                for(int p=0;p<this.Examenes.get(IDexamen).GET_Seccion(s).getPreguntas_size();p++)
+                {
+                    for(int r=0;r<this.Examenes.get(IDexamen).GET_Seccion(s).getPregunta(p).getRespuestas_size() ;r++){
+                        result[0]=result[0]+ this.Examenes.get(IDexamen).GET_Seccion(s).getPregunta(p).getPuntos();
+                        if(this.Examenes.get(IDexamen).GET_Seccion(s).getPregunta(p).Iscorrecta())
+                            result[1]=result[1]+ this.Examenes.get(IDexamen).GET_Seccion(s).getPregunta(p).getPuntos();
+                    }
+                }
+            }
+        }
+        if((result[0]>0)&&(result[1]>0))
+            return (result[1]*100)/result[0];
+        else
+            return 0;
+    }
+    
 }

@@ -28,7 +28,7 @@ public class V_Pregunta extends javax.swing.JFrame {
         IDrespuesta=-1;
         if((IDsecccion>-1)&&(IDexamen>-1)){
             jLabel6.setText("0");
-            jLabel8.setText(String.valueOf(Instacia.seccion_size(IDexamen,IDsecccion)));
+            jLabel8.setText(String.valueOf(Instacia.Get_Preguntas_size(IDexamen,IDsecccion)));
             if(Integer.parseInt(jLabel8.getText())>0){
                 jTextArea1.setText(Instacia.Get_pregunta(IDexamen,IDsecccion,Integer.parseInt(jLabel6.getText())));
                 jTable1.setModel(Instacia.get_Respuestas(IDexamen,IDsecccion,Integer.parseInt(jLabel6.getText())));
@@ -253,7 +253,7 @@ public class V_Pregunta extends javax.swing.JFrame {
                jTable1.setModel(
                        Instacia.get_Respuestas(IDexamen,IDsecccion,IDpregunta)  
                        );
-              jLabel8.setText(String.valueOf(Instacia.seccion_size(IDexamen,IDsecccion)));
+              jLabel8.setText(String.valueOf(Instacia.Get_Preguntas_size(IDexamen,IDsecccion)));
               jTextArea2.setText("");
            }
         }
@@ -266,10 +266,10 @@ public class V_Pregunta extends javax.swing.JFrame {
                jTable1.setModel(
                        Instacia.get_Respuestas(IDexamen,IDsecccion,IDpregunta)  
                        );               
-                jLabel8.setText(String.valueOf(Instacia.seccion_size(IDexamen,IDsecccion)));
+                jLabel8.setText(String.valueOf(Instacia.Get_Preguntas_size(IDexamen,IDsecccion)));
+                jTextArea2.setText("");
            }
         }
-        
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
@@ -305,13 +305,13 @@ public class V_Pregunta extends javax.swing.JFrame {
                     IDpregunta=-1;
                     jTextArea1.setText("");
                     jLabel6.setText(String.valueOf(Integer.parseInt(jLabel6.getText())+1));
-                    jLabel8.setText(String.valueOf(Instacia.seccion_size(IDexamen,IDsecccion)));
+                    jLabel8.setText(String.valueOf(Instacia.Get_Preguntas_size(IDexamen,IDsecccion)));
                     jTable1.setModel(Instacia.get_Respuestas(-1,-1,-1));
                 }
                 else
                 {
                      jLabel6.setText(String.valueOf(Integer.parseInt(jLabel6.getText())+1));
-                     jLabel8.setText(String.valueOf(Instacia.seccion_size(IDexamen,IDsecccion)));
+                     jLabel8.setText(String.valueOf(Instacia.Get_Preguntas_size(IDexamen,IDsecccion)));
                      jTextArea1.setText(Instacia.Get_pregunta(IDexamen,IDsecccion,Integer.parseInt(jLabel6.getText())));
                      jTable1.setModel(Instacia.get_Respuestas(IDexamen,IDsecccion,Integer.parseInt(jLabel6.getText())));
                  }
@@ -338,7 +338,7 @@ public class V_Pregunta extends javax.swing.JFrame {
                     IDpregunta=Integer.parseInt(jLabel6.getText())-1;
                     jTextArea1.setText(Instacia.Get_pregunta(IDexamen,IDsecccion,IDpregunta));
                     jLabel6.setText(String.valueOf(IDpregunta));
-                    jLabel8.setText(String.valueOf(Instacia.seccion_size(IDexamen,IDsecccion)));
+                    jLabel8.setText(String.valueOf(Instacia.Get_Preguntas_size(IDexamen,IDsecccion)));
                     jTable1.setModel(Instacia.get_Respuestas(IDexamen,IDsecccion,IDpregunta));
                 }
             }

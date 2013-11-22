@@ -4,14 +4,15 @@
  * and open the template in the editor.
  */
 import UI.Principal;
-import UI.Principal;
+import java.util.Enumeration;
+import javax.swing.AbstractButton;
+import javax.swing.JRadioButton;
 
 public class Seleccion_Unica extends javax.swing.JInternalFrame implements I_Controlador{
     private Principal Instacia;
     private int IDexamen;
     private int IDsecccion;
     private int IDpregunta;
-    private int IDrespuesta;
     /**
      * Creates new form Seleccion_Unica
      */
@@ -34,6 +35,8 @@ public class Seleccion_Unica extends javax.swing.JInternalFrame implements I_Con
         jRadioButton1 = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
         jRadioButton3 = new javax.swing.JRadioButton();
+        jButton1 = new javax.swing.JButton();
+        jSpinner1 = new javax.swing.JSpinner();
 
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
             public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
@@ -53,6 +56,7 @@ public class Seleccion_Unica extends javax.swing.JInternalFrame implements I_Con
             }
         });
 
+        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("jLabel2");
         jLabel2.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
@@ -65,6 +69,19 @@ public class Seleccion_Unica extends javax.swing.JInternalFrame implements I_Con
         buttonGroup1.add(jRadioButton3);
         jRadioButton3.setText("jRadioButton3");
 
+        jButton1.setText("Siguiente");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jSpinner1.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSpinner1StateChanged(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -72,30 +89,40 @@ public class Seleccion_Unica extends javax.swing.JInternalFrame implements I_Con
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jRadioButton3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
-                                .addComponent(jRadioButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jRadioButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addContainerGap(17, Short.MAX_VALUE))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jRadioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jRadioButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jRadioButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 33, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jRadioButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jRadioButton2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jRadioButton3)
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addContainerGap())
         );
 
         pack();
@@ -103,21 +130,89 @@ public class Seleccion_Unica extends javax.swing.JInternalFrame implements I_Con
 
     private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
         // TODO add your handling code here:
-        jLabel2.setText(Instacia.Get_pregunta(IDexamen, IDsecccion, IDpregunta));
-        jRadioButton1.setText(Instacia.get_Respuestas(IDexamen, IDsecccion, IDpregunta).getValueAt(0, 1).toString());
-        jRadioButton2.setText(Instacia.get_Respuestas(IDexamen, IDsecccion, IDpregunta).getValueAt(1, 1).toString());
-        jRadioButton3.setText(Instacia.get_Respuestas(IDexamen, IDsecccion, IDpregunta).getValueAt(2, 1).toString());
+        if(IDpregunta>-1)
+        {
+            jSpinner1.setValue(IDpregunta);
+            jSpinner1StateChanged(null);
+        }
+        else
+        {
+            jSpinner1.setValue(0);
+            jSpinner1StateChanged(null);            
+        }
     }//GEN-LAST:event_formInternalFrameOpened
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+            try{
+                if(Instacia.Get_Preguntas_size(IDexamen, IDsecccion)>IDpregunta){
+                    Instacia.SET_Pregunta_Evaluada(IDexamen,IDsecccion,IDpregunta,get_seleccion(),true);
+                    if(Instacia.Get_Preguntas_size(IDexamen, IDsecccion)> (IDpregunta+1)){
+                        IDpregunta+=1;
+                        jSpinner1.setValue(IDpregunta);
+                    }
+                    else if(jButton1.getText().compareTo("Finalizar")==0){
+                        this.setVisible(false);
+                    }
+                    else
+                    {
+                        jButton1.setText("Finalizar");
+                    }
+                }
+            }
+            catch(Exception er){} 
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jSpinner1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner1StateChanged
+        // TODO add your handling code here:
+        if(Integer.parseInt(jSpinner1.getValue().toString()) >-1)
+        {
+            IDpregunta=Integer.parseInt(jSpinner1.getValue().toString());
+            try{
+            if((Instacia.GET_Respuestas_Size(IDexamen, IDsecccion, IDpregunta)>-1)&&(IDpregunta > -1))
+            {
+                try{
+                    jLabel2.setText(Instacia.Get_pregunta(IDexamen, IDsecccion, IDpregunta));
+                }catch(Exception er){}
+                try{
+                    jRadioButton1.setText(Instacia.get_Respuestas(IDexamen, IDsecccion, IDpregunta).getValueAt(0, 1).toString());                
+                }catch(Exception er){}
+                try{
+                    jRadioButton2.setText(Instacia.get_Respuestas(IDexamen, IDsecccion, IDpregunta).getValueAt(1, 1).toString());
+                }catch(Exception er){}
+                try{
+                    jRadioButton3.setText(Instacia.get_Respuestas(IDexamen, IDsecccion, IDpregunta).getValueAt(2, 1).toString());
+                }catch(Exception er){}
+            }
+        }catch(Exception er){} 
+        }
+    }//GEN-LAST:event_jSpinner1StateChanged
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSpinner jSpinner1;
     // End of variables declaration//GEN-END:variables
 
+    int get_seleccion(){
+        int result=-1;int tresult=-1;
+        Enumeration<AbstractButton> allRadioButton=buttonGroup1.getElements();
+        while(allRadioButton.hasMoreElements()){
+            JRadioButton temp=(JRadioButton)allRadioButton.nextElement();
+            tresult++;
+            if(temp.isSelected())  
+            {  
+                result=tresult;
+            }
+        }
+        return result;
+    }
+    
     @Override
     public void Set_datos(Principal controlador, int IDexaman, int IDseccion, int IDpregunta) {
       this.Instacia=controlador;
@@ -126,6 +221,4 @@ public class Seleccion_Unica extends javax.swing.JInternalFrame implements I_Con
       this.IDpregunta=IDpregunta;
       this.setVisible(true);
     }
-
-    
 }

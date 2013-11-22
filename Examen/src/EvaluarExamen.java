@@ -8,6 +8,7 @@ import UI.Principal;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JInternalFrame;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -40,10 +41,20 @@ public class EvaluarExamen extends javax.swing.JFrame {
             IDseccion=0;
             jComboBox1.setSelectedIndex(0);            
         }
-        if(Instacia.seccion_size(IDexamen,IDseccion)>-1)
+        if(Instacia.Get_Preguntas_size(IDexamen,IDseccion)>-1)
         {
             jLabel7.setText("0");
-            jLabel9.setText(String.valueOf(Instacia.seccion_size(IDexamen,IDseccion)));  
+            jLabel9.setText(String.valueOf(Instacia.Get_Preguntas_size(IDexamen,IDseccion)));
+            
+            try{ 
+               Class c = loader.loadClass("Seleccion_Unica");               
+               JInternalFrame j = (JInternalFrame)c.newInstance(); 
+               jDesktopPane1.add(j);
+               if(Integer.parseInt(jLabel7.getText()) < Integer.parseInt(jLabel9.getText()))
+                {
+                    ((I_Controlador) j).Set_datos(Instacia, IDexamen, IDseccion, Integer.parseInt(jLabel7.getText()));     
+                }
+            }catch (Exception ex){}             
         }
     }
 
@@ -68,8 +79,8 @@ public class EvaluarExamen extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
         jDesktopPane1 = new javax.swing.JDesktopPane();
+        jButton1 = new javax.swing.JButton();
 
         jLabel1.setText("ID :");
 
@@ -96,7 +107,7 @@ public class EvaluarExamen extends javax.swing.JFrame {
 
         jLabel9.setText("500");
 
-        jButton1.setText("Siguiente");
+        jButton1.setText("Optener Nota");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -126,24 +137,25 @@ public class EvaluarExamen extends javax.swing.JFrame {
                     .addComponent(jLabel2))
                 .addGap(185, 185, 185))
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jSeparator1))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(jSeparator1))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addGap(18, 18, 18)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 754, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel7)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jLabel8)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jLabel9)))))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jButton1))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 754, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel8)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel9)))))
-                .addContainerGap(28, Short.MAX_VALUE))
+                        .addGap(327, 327, 327)
+                        .addComponent(jButton1)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -169,13 +181,12 @@ public class EvaluarExamen extends javax.swing.JFrame {
                     .addComponent(jLabel9))
                 .addGap(18, 18, 18)
                 .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                 .addComponent(jButton1)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
@@ -185,36 +196,15 @@ public class EvaluarExamen extends javax.swing.JFrame {
             if(IDseccion>-1)
             {
                 jLabel7.setText("0");
-                jLabel9.setText(String.valueOf(Instacia.seccion_size(IDexamen,IDseccion)));  
+                jLabel9.setText(String.valueOf(Instacia.Get_Preguntas_size(IDexamen,IDseccion)));  
             }
         }
     }//GEN-LAST:event_jComboBox1ItemStateChanged
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        try{ 
-               Class c = loader.loadClass("Seleccion_Unica");               
-            try {
-                JInternalFrame j = (JInternalFrame)c.newInstance(); 
-                jDesktopPane1.add(j);
-                if(Integer.parseInt(jLabel7.getText()) < Integer.parseInt(jLabel9.getText()))
-                {
-                    ((I_Controlador) j).Set_datos(Instacia, IDexamen, IDseccion, Integer.parseInt(jLabel7.getText()));     
-                }
-            }
-            catch (InstantiationException ex)
-            {
-                Logger.getLogger(EvaluarExamen.class.getName()).log(Level.SEVERE, null, ex);
-            } 
-            catch (IllegalAccessException ex) 
-            {
-                Logger.getLogger(EvaluarExamen.class.getName()).log(Level.SEVERE, null, ex);
-            }              
-            }
-        catch (ClassNotFoundException ex)
-        {
-                Logger.getLogger(EvaluarExamen.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        JOptionPane.showMessageDialog(null,Instacia.Get_Nota(IDexamen));
+      
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

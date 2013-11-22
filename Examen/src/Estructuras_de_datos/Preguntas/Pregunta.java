@@ -26,7 +26,11 @@ public class Pregunta implements I_Pregunta{
     public String getPregunta() {
         return Pregunta;
     }
-    
+
+    public int getPuntos() {
+        return Puntos;
+    }
+        
     public void setRespuestas(String Respuesta, boolean RespuestaCorrecta) {
        I_Respuesta nn= new Respuesta(Respuesta, RespuestaCorrecta);
         this.Respuestas.add(nn);
@@ -45,5 +49,18 @@ public class Pregunta implements I_Pregunta{
     public boolean DeleteThisRespuesta(int ID)
     {
        return  Respuestas.remove(Respuestas.get(ID));
+    }
+
+    public void Set_Respuesta_Evaluada(int _IDrespuesta, boolean _Evaluacion) {
+        this.Respuestas.get(_IDrespuesta).Set_Evaluacion(_Evaluacion);
+    }
+
+    public boolean Iscorrecta() {
+        boolean result=false;
+        for(int r=0;r<this.Respuestas.size();r++){
+            if(this.Respuestas.get(r).isCorrecta())
+                result=true;
+        }
+        return result;
     }
 }
