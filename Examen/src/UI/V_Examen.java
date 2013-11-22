@@ -5,13 +5,20 @@
 package UI;
 
 import Estructuras_de_datos.Seccciones.I_Seccion;
+import java.io.File;
 import java.util.ArrayList;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 
 public class V_Examen extends javax.swing.JFrame {
     private Principal Instacia;
     static int IDexamen;
     public int IDseccion;
+
+   private File lastDir=null;
+    File[] Directorio = null;
+    
 
     /**
      * Creates new form V_Examen
@@ -51,6 +58,9 @@ public class V_Examen extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jLabel5 = new javax.swing.JLabel();
+        jButton4 = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -97,6 +107,18 @@ public class V_Examen extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
+        jLabel5.setText("GUI");
+
+        jButton4.setText("Buscar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setText("/");
+        jLabel6.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
 
@@ -110,7 +132,7 @@ public class V_Examen extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel4)
@@ -134,7 +156,13 @@ public class V_Examen extends javax.swing.JFrame {
                             .addComponent(jTextField2)))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -169,8 +197,12 @@ public class V_Examen extends javax.swing.JFrame {
                         .addGap(36, 36, 36)
                         .addComponent(jLabel4))
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(6, 6, 6)
-                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(5, 5, 5)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5)
+                    .addComponent(jButton4)
+                    .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -181,7 +213,6 @@ public class V_Examen extends javax.swing.JFrame {
         );
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -191,9 +222,9 @@ public class V_Examen extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        if(IDexamen>-1)
+        if((IDexamen>-1)&&(Directorio!=null))
         {
-            Instacia.Add_seccion(jTextField4.getText(), IDexamen);
+            Instacia.Add_seccion(jTextField4.getText(), IDexamen,Directorio);
             jTable1.setModel(Instacia.GET_secciones(IDexamen));
         }
         jTextField4.setText("");
@@ -225,6 +256,20 @@ public class V_Examen extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        Directorio = selectDir();
+        if(Directorio != null) {
+            for(File z : Directorio) {
+                String[] curRow = { z.toString(), "Waiting"};
+                if(!mysplit(z.getName())){
+                    jLabel6.setText(z.getName());
+                }
+            }
+        }
+        return;
+    }//GEN-LAST:event_jButton4ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -232,10 +277,13 @@ public class V_Examen extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
@@ -251,5 +299,31 @@ public class V_Examen extends javax.swing.JFrame {
         for(int i=0;i<_secciones.size();i++){
             _secciones.get(i).getNombre();
         }
+    }
+    
+    public boolean mysplit(String filename)
+    {
+        boolean result=false;
+        char[] charArray = filename.toCharArray();
+        for(int i=0;i<charArray.length;i++){
+            if(charArray[i]=='$'){                
+                result=true;
+            }
+        }
+            return result;
+    }
+    private File[] selectDir() {
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setMultiSelectionEnabled(true);
+        //fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("class", "class");
+        fileChooser.setFileFilter(filter);
+        int showOpenDialog = fileChooser.showOpenDialog(null);
+        if (showOpenDialog != JFileChooser.APPROVE_OPTION) {
+            return null;
+        }
+        File[] uploadDir = fileChooser.getSelectedFiles();
+        lastDir = new File(uploadDir[uploadDir.length-1].getParent());
+        return uploadDir;
     }
 }

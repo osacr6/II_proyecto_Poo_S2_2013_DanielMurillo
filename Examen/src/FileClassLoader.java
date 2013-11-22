@@ -1,8 +1,7 @@
-
-
 import java.io.*;
 
-public class FileClassLoader extends ClassLoader {
+  public class FileClassLoader extends ClassLoader {
+
 
   private String root;
 
@@ -12,33 +11,30 @@ public class FileClassLoader extends ClassLoader {
       }
     root = rootDir;
   }
-
-  @Override
-  protected Class loadClass (String name, boolean resolve) 
+  protected Class loadClass (/*String name*/File name, boolean resolve) 
     throws ClassNotFoundException {
 
     // Since all support classes of loaded class use same class loader
     // must check subclass cache of classes for things like Object
 
-    Class c = findLoadedClass (name);
+    Class c = findLoadedClass (name.getName().substring(0, name.getName().length()-6));
     if (c == null) {
       try {
-        c = findSystemClass (name);
-      } 
-      catch (Exception e) {
+        c = findSystemClass (name.getName().substring(0, name.getName().length()-6));
+      } catch (Exception e) {
       }
     }
-
     if (c == null) {
       // Convert class name argument to filename
       // Convert package names into subdirectories
-      String filename = name.replace ('.', File.separatorChar) + ".class";
+      /*String*/File filename = name;//.replace ('.', File.separatorChar) + ".class";
 
       try {
         byte data[] = loadClassData(filename);
-        c = defineClass (name, data, 0, data.length);
-        if (c == null)
-          throw new ClassNotFoundException (name);
+        c = defineClass (name.getName().substring(0, name.getName().length()-6), data, 0, data.length);
+        if (c == null) {
+              throw new ClassNotFoundException (name.getName().substring(0, name.getName().length()-6));
+          }
       } catch (IOException e) {
         throw new ClassNotFoundException ("Error reading file: " + filename);
       }
@@ -48,11 +44,11 @@ public class FileClassLoader extends ClassLoader {
         }
     return c;
   }
-  private byte[] loadClassData (String filename) 
+  private byte[] loadClassData (/*Strin*/File filename) 
       throws IOException {
 
     // Create a file object relative to directory provided
-    File f = new File (root, filename);
+    File f = filename;//new File(filename);
 
     // Get size of class file
     int size = (int)f.length();

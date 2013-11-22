@@ -5,6 +5,7 @@
 
 
 import UI.Principal;
+import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JInternalFrame;
@@ -41,21 +42,6 @@ public class EvaluarExamen extends javax.swing.JFrame {
             IDseccion=0;
             jComboBox1.setSelectedIndex(0);            
         }
-        if(Instacia.Get_Preguntas_size(IDexamen,IDseccion)>-1)
-        {
-            jLabel7.setText("0");
-            jLabel9.setText(String.valueOf(Instacia.Get_Preguntas_size(IDexamen,IDseccion)));
-            
-            try{ 
-               Class c = loader.loadClass("Seleccion_Unica");               
-               JInternalFrame j = (JInternalFrame)c.newInstance(); 
-               jDesktopPane1.add(j);
-               if(Integer.parseInt(jLabel7.getText()) < Integer.parseInt(jLabel9.getText()))
-                {
-                    ((I_Controlador) j).Set_datos(Instacia, IDexamen, IDseccion, Integer.parseInt(jLabel7.getText()));     
-                }
-            }catch (Exception ex){}             
-        }
     }
 
     /**
@@ -67,7 +53,6 @@ public class EvaluarExamen extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jFileChooser1 = new javax.swing.JFileChooser();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -196,7 +181,17 @@ public class EvaluarExamen extends javax.swing.JFrame {
             if(IDseccion>-1)
             {
                 jLabel7.setText("0");
-                jLabel9.setText(String.valueOf(Instacia.Get_Preguntas_size(IDexamen,IDseccion)));  
+                jLabel9.setText(String.valueOf(Instacia.Get_Preguntas_size(IDexamen,IDseccion))); 
+                
+                try{ 
+                    Class c = loader.loadClass(Get_file(Instacia.GET_seccion_GUI(IDexamen,IDseccion)),true);               
+                    JInternalFrame j = (JInternalFrame)c.newInstance(); 
+                    jDesktopPane1.add(j);
+                    if(Integer.parseInt(jLabel7.getText()) < Integer.parseInt(jLabel9.getText()))
+                        {
+                            ((I_Controlador) j).Set_datos(Instacia, IDexamen, IDseccion, Integer.parseInt(jLabel7.getText()));     
+                        }
+                    }catch (Exception ex){}    
             }
         }
     }//GEN-LAST:event_jComboBox1ItemStateChanged
@@ -204,7 +199,6 @@ public class EvaluarExamen extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         JOptionPane.showMessageDialog(null,"usted ha obtenido una nota de -->"+Instacia.Get_Nota(IDexamen));
-      
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -214,7 +208,6 @@ public class EvaluarExamen extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JDesktopPane jDesktopPane1;
-    private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -226,4 +219,30 @@ public class EvaluarExamen extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
+
+    public boolean mysplit(String filename)
+    {
+        boolean result=false;
+        char[] charArray = filename.toCharArray();
+        for(int i=0;i<charArray.length;i++){
+            if(charArray[i]=='$'){                
+                result=true;
+            }
+        }
+            return result;
+    }  
+    
+    public File Get_file(File[] myfiles){
+        File result=null;
+        if(myfiles != null) {
+            for(File z : myfiles) {
+                if(!mysplit(z.getName())){
+                    result=z;
+                }
+            }
+        }
+        return result;
+    } 
+    
+
 }

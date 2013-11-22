@@ -3,6 +3,7 @@ package Estructuras_de_datos.Seccciones;
 
 import Estructuras_de_datos.Preguntas.I_Pregunta;
 import Estructuras_de_datos.Seccciones.I_Seccion;
+import java.io.File;
 import java.util.ArrayList;
 
 public class Seccion implements I_Seccion{
@@ -10,12 +11,14 @@ public class Seccion implements I_Seccion{
     private int Puntos;
     private int Obtenidos;
     private  ArrayList<I_Pregunta> Preguntas;
+    private File[] GUI; 
 
-    public Seccion(String Nombre) {
+    public Seccion(String Nombre,File[] Directorio) {
         this.Nombre = Nombre;
         this.Puntos=0;
         this.Obtenidos=0;
         Preguntas= new ArrayList<I_Pregunta>();
+        GUI=Directorio;
     }
     
     public String getNombre() {
@@ -33,6 +36,12 @@ public class Seccion implements I_Seccion{
             else
                 return false;
     }
+
+    public File[] getGUI() {
+        return GUI;
+    }
+    
+    
     
     public void setPreguntas(I_Pregunta _Pregunta) {
         this.Preguntas.add(_Pregunta);

@@ -1,22 +1,23 @@
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 import UI.Principal;
 import java.util.Enumeration;
 import javax.swing.AbstractButton;
 import javax.swing.JRadioButton;
 
-public class Seleccion_Unica extends javax.swing.JInternalFrame implements I_Controlador{
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+public class Falso_Verdadero extends javax.swing.JInternalFrame implements I_Controlador{
+    /**
+     * Creates new form Falso_Verdadero
+     */
     private Principal Instacia;
     private int IDexamen;
     private int IDsecccion;
     private int IDpregunta;
-    /**
-     * Creates new form Seleccion_Unica
-     */
-    public Seleccion_Unica() {
+    public Falso_Verdadero() {
         initComponents();
     }
 
@@ -30,13 +31,12 @@ public class Seleccion_Unica extends javax.swing.JInternalFrame implements I_Con
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
-        jLabel2 = new javax.swing.JLabel();
+        jSpinner1 = new javax.swing.JSpinner();
+        jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jRadioButton1 = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
         jButton1 = new javax.swing.JButton();
-        jSpinner1 = new javax.swing.JSpinner();
 
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
             public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
@@ -56,18 +56,20 @@ public class Seleccion_Unica extends javax.swing.JInternalFrame implements I_Con
             }
         });
 
-        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("jLabel2");
-        jLabel2.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jSpinner1.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSpinner1StateChanged(evt);
+            }
+        });
+
+        jLabel1.setText("jLabel1");
+        jLabel1.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
         buttonGroup1.add(jRadioButton1);
-        jRadioButton1.setText("jRadioButton1");
+        jRadioButton1.setText("Falso");
 
         buttonGroup1.add(jRadioButton2);
-        jRadioButton2.setText("jRadioButton2");
-
-        buttonGroup1.add(jRadioButton3);
-        jRadioButton3.setText("jRadioButton3");
+        jRadioButton2.setText("Verdadero");
 
         jButton1.setText("Siguiente");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -76,52 +78,37 @@ public class Seleccion_Unica extends javax.swing.JInternalFrame implements I_Con
             }
         });
 
-        jSpinner1.setVerifyInputWhenFocusTarget(false);
-        jSpinner1.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                jSpinner1StateChanged(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jRadioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jRadioButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jRadioButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 33, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton1)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jSeparator1)
+                        .addComponent(jRadioButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 396, Short.MAX_VALUE)
+                        .addComponent(jRadioButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jRadioButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jRadioButton2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jRadioButton3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addContainerGap())
         );
@@ -129,23 +116,9 @@ public class Seleccion_Unica extends javax.swing.JInternalFrame implements I_Con
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
-        // TODO add your handling code here:
-        if(IDpregunta>-1)
-        {
-            jSpinner1.setValue(IDpregunta);
-            jSpinner1StateChanged(null);
-        }
-        else
-        {
-            jSpinner1.setValue(0);
-            jSpinner1StateChanged(null);            
-        }
-    }//GEN-LAST:event_formInternalFrameOpened
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-            try{
+                    try{
                 if(Instacia.Get_Preguntas_size(IDexamen, IDsecccion)>IDpregunta){
                     Instacia.SET_Pregunta_Evaluada(IDexamen,IDsecccion,IDpregunta,get_seleccion(),true);
                     if(Instacia.Get_Preguntas_size(IDexamen, IDsecccion)> (IDpregunta+1)){
@@ -166,14 +139,14 @@ public class Seleccion_Unica extends javax.swing.JInternalFrame implements I_Con
 
     private void jSpinner1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner1StateChanged
         // TODO add your handling code here:
-        if(Integer.parseInt(jSpinner1.getValue().toString()) >-1)
+                if(Integer.parseInt(jSpinner1.getValue().toString()) >-1)
         {
             IDpregunta=Integer.parseInt(jSpinner1.getValue().toString());
             try{
             if((Instacia.GET_Respuestas_Size(IDexamen, IDsecccion, IDpregunta)>-1)&&(IDpregunta > -1))
             {
                 try{
-                    jLabel2.setText(Instacia.Get_pregunta(IDexamen, IDsecccion, IDpregunta));
+                    jLabel1.setText(Instacia.Get_pregunta(IDexamen, IDsecccion, IDpregunta));
                 }catch(Exception er){}
                 try{
                     jRadioButton1.setText(Instacia.get_Respuestas(IDexamen, IDsecccion, IDpregunta).getValueAt(0, 1).toString());                
@@ -181,21 +154,31 @@ public class Seleccion_Unica extends javax.swing.JInternalFrame implements I_Con
                 try{
                     jRadioButton2.setText(Instacia.get_Respuestas(IDexamen, IDsecccion, IDpregunta).getValueAt(1, 1).toString());
                 }catch(Exception er){}
-                try{
-                    jRadioButton3.setText(Instacia.get_Respuestas(IDexamen, IDsecccion, IDpregunta).getValueAt(2, 1).toString());
-                }catch(Exception er){}
             }
         }catch(Exception er){} 
         }
     }//GEN-LAST:event_jSpinner1StateChanged
 
+    private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
+        // TODO add your handling code here:
+        if(IDpregunta>-1)
+        {
+            jSpinner1.setValue(IDpregunta);
+            jSpinner1StateChanged(null);
+        }
+        else
+        {
+            jSpinner1.setValue(0);
+            jSpinner1StateChanged(null);            
+        }
+    }//GEN-LAST:event_formInternalFrameOpened
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSpinner jSpinner1;
     // End of variables declaration//GEN-END:variables

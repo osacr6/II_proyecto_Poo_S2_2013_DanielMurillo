@@ -7,6 +7,7 @@ import Estructuras_de_datos.Examenes.I_Examen;
 import Estructuras_de_datos.Examenes.Examen;
 import Estructuras_de_datos.Preguntas.I_Pregunta;
 import Estructuras_de_datos.Preguntas.Pregunta;
+import java.io.File;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
@@ -73,8 +74,8 @@ public class Principal{
         ////////////////////////////////////////////////////////////////////
     
     // nueva seccion
-    public void Add_seccion(String _seccion,int IDexamen){
-        I_Seccion nn= new Seccion(_seccion);
+    public void Add_seccion(String _seccion,int IDexamen,File[] Dir){
+        I_Seccion nn= new Seccion(_seccion,Dir);
         this.Examenes.get(IDexamen).SET_Seccion(nn);
     }
     
@@ -97,16 +98,29 @@ public class Principal{
     }
     
     //optiene el id de una seccion basado en el id examen y el nombre de la seccion
-    public int GET_seccion_ID(int IDexamen,String _ID)
+    public int GET_seccion_ID(int IDexamen,String _sec)
     {
         int result=-1;
        if(this.Examenes.size()>0)
        {
            for (int i=0; i< this.Examenes.get(IDexamen).GET_Secciones_size(); i++) {
-               if(this.Examenes.get(IDexamen).GET_Seccion(i).getSeccion_ID(_ID))
+               if(this.Examenes.get(IDexamen).GET_Seccion(i).getSeccion_ID(_sec))
                {
                    result=i;
                }
+           }
+       }
+       return result;
+    }
+    
+        //optiene el id de una seccion basado en el id examen y el nombre de la seccion
+    public File[] GET_seccion_GUI(int IDexamen,int IDSeccion)
+    {
+        File[] result=null;
+       if((this.Examenes.size()>0)&&(IDexamen>-1))
+       {
+           if((this.Examenes.get(IDexamen).GET_Secciones_size()>0)&&(IDSeccion >-1)){
+               result=this.Examenes.get(IDexamen).GET_Seccion(IDSeccion).getGUI();
            }
        }
        return result;

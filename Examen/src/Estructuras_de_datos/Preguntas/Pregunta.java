@@ -6,6 +6,7 @@ package Estructuras_de_datos.Preguntas;
 
 import Estructuras_de_datos.Respuestas.I_Respuesta;
 import Estructuras_de_datos.Respuestas.Respuesta;
+import java.io.File;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 
@@ -14,7 +15,6 @@ public class Pregunta implements I_Pregunta{
     private int Puntos;
     private  ArrayList<I_Respuesta> Respuestas;
     private boolean Estado;
-    //private I_GUI_Pregunta UI; 
 
     public Pregunta(String Pregunta, int Puntos) {
         this.Pregunta = Pregunta;
