@@ -39,23 +39,33 @@ public class Seccion implements I_Seccion{
     }
 /*
  * @name getGUI
- * @return 
+ * @return directoria de archivos donde se localiza la Gui
  */
     public File[] getGUI() {
         return GUI;
     }
     
-    
-    
+    /*
+     * @name setPreguntas
+     * @param I_Pregunta
+     * 
+     */    
     public void setPreguntas(I_Pregunta _Pregunta) {
         this.Preguntas.add(_Pregunta);
     }
-    
+    /*
+     * @name getPreguntas_size
+     * return total de preguntas
+     */
     public int getPreguntas_size()
     {
         return this.Preguntas.size();
     }
-    
+    /*
+     * @name  getPregunta
+     * @param Id pregunta
+     * @return objeto pregunta
+     */
     public I_Pregunta getPregunta(int ID)
     {
         if(ID<this.Preguntas.size())

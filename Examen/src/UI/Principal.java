@@ -12,6 +12,9 @@ import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
 public class Principal{
+    /*
+     * instancia pricipal de examenes
+     */
     public static ArrayList<I_Examen> Examenes;
 
     public Principal() {
@@ -23,14 +26,20 @@ public class Principal{
         ////////////////////EXAMENES////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////
-    
+    /*
+     * @name Add_Examen
+     * @return indice del objeto agregado
+     */
     public int Add_Examen(String ID, String Materia, String Profesor)
     {
         I_Examen nn= new Examen(ID, Materia, Profesor);
         this.Examenes.add(nn);
         return this.Examenes.size()-1;
     }
-    
+    /*
+     * @name Get_Examen_ID
+     * @param id examen
+     */
     public int Get_Examen_ID(String ID)
     {
         int result=-1;
@@ -40,7 +49,11 @@ public class Principal{
         }
         return result;
     }
-    
+    /*
+     * @name Get_Examen
+     * @param ID examen
+     * @return id,materia,profesor
+     */
     public String[] Get_Examen(int ID)
     {
         String[] result= new String[3];
@@ -51,6 +64,10 @@ public class Principal{
     }
     
     //optiene todos los examenes
+    /*
+     * @name Get_Examenes
+     * @return lista de ID,Materia,Profesor
+     */
     public DefaultTableModel Get_Examenes()
     {
         DefaultTableModel  model = new DefaultTableModel();
@@ -74,12 +91,21 @@ public class Principal{
         ////////////////////////////////////////////////////////////////////
     
     // nueva seccion
+    /*
+     * @name Add_seccion
+     * @paran _seccion,id examen,direccio Gui
+     */
     public void Add_seccion(String _seccion,int IDexamen,File[] Dir){
         I_Seccion nn= new Seccion(_seccion,Dir);
         this.Examenes.get(IDexamen).SET_Seccion(nn);
     }
     
     //tabla de todas las las secciones en un examen
+   /*
+     * @name GET_secciones
+     * @param IDexamen 
+     * @return DefaultTableModel Nombre Puntos 
+     */
     public DefaultTableModel GET_secciones(int IDexamen){ 
         DefaultTableModel  model = new DefaultTableModel();
         model.addColumn("Nombre");
@@ -98,6 +124,11 @@ public class Principal{
     }
     
     //optiene el id de una seccion basado en el id examen y el nombre de la seccion
+   /*
+     * @name GET_seccion_ID
+     * @param IDexamen IDexamen _sec
+     * @return getSeccion_ID
+     */
     public int GET_seccion_ID(int IDexamen,String _sec)
     {
         int result=-1;
@@ -114,6 +145,11 @@ public class Principal{
     }
     
         //optiene el id de una seccion basado en el id examen y el nombre de la seccion
+   /*
+     * @name GET_seccion_GUI
+     * @param IDexamen IDseccion 
+     * @return File[] 
+     */
     public File[] GET_seccion_GUI(int IDexamen,int IDSeccion)
     {
         File[] result=null;
@@ -131,7 +167,11 @@ public class Principal{
         ///////////////////PREGUNTAS////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////
-    
+   /*
+     * @name SET_pregunta
+     * @param IDexamen IDseccion IDpregunta
+     * @return getPreguntas_size
+     */
     public int SET_pregunta(int IDexamen,int IDseccion,String _pregunta,int puntos)
     {
         int result=-1;
@@ -151,6 +191,10 @@ public class Principal{
     }
     
         // teniendo bien claro el examen,la seccion y la pregunta se inserta la respuesta
+   /*
+     * @name SET_Pregunta_Evaluada
+     * @param IDexamen IDseccion IDpregunta Estado
+     */
     public void SET_Pregunta_Evaluada(int IDexamen,int IDseccion,int IDpregunta,int IDrespuesta,boolean Estado)
     {
         if(this.Examenes.size()>0)            
@@ -165,7 +209,11 @@ public class Principal{
         }
     }
     
-    
+   /*
+     * @name Get_pregunta
+     * @param IDexamen IDseccion IDpregunta
+     * @return getPregunta
+     */ 
     public String Get_pregunta(int IDexamen,int IDseccion,int IDpregunta)
     {
         String result="";
@@ -181,7 +229,11 @@ public class Principal{
         }
         return result;
     }
-    
+   /*
+     * @name Get_Preguntas_size
+     * @param IDexamen IDseccion 
+     * @return getPreguntas_size
+     */
     public int Get_Preguntas_size(int IDexamen,int IDseccion){
         if((IDexamen>-1)&&(IDseccion>-1))
             return this.Examenes.get(IDexamen).GET_Seccion(IDseccion).getPreguntas_size();
@@ -196,6 +248,10 @@ public class Principal{
         ////////////////////////////////////////////////////////////////////
     
     // teniendo bien claro el examen,la seccion y la pregunta se inserta la respuesta
+   /*
+     * @name SET_Respuesta
+     * @param IDexamen IDseccion IDpregunta
+     */
     public void SET_Respuesta(int IDexamen,int IDseccion,int IDpregunta, String _respuesta,boolean correcta)
     {
         if(this.Examenes.size()>0)            
@@ -213,6 +269,10 @@ public class Principal{
    
     
         // teniendo bien claro el examen,la seccion y la pregunta y la respuesta se procede a eliminarla
+     /*
+     * @name delete_Respuesta
+     * @param IDexamen IDseccion IDpregunta
+     */
     public void delete_Respuesta(int IDexamen,int IDseccion,int IDpregunta,int IDrespuesta)
     {
         if(this.Examenes.size()>0)            
@@ -226,7 +286,11 @@ public class Principal{
             }
         }
     }
-    
+   /*
+     * @name get_Respuestas
+     * @param IDexamen IDseccion IDpregunta
+     * @return DefaultTableModel Numero Respuesta Correcta
+     */
     public DefaultTableModel get_Respuestas(int IDexamen,int IDseccion,int IDpregunta)
     {
         DefaultTableModel  model = new DefaultTableModel();
@@ -254,6 +318,11 @@ public class Principal{
     }
     
     // teniendo bien claro el examen,la seccion y la pregunta y la respuesta se procede a eliminarla
+        /*
+     * @name GET_Respuestas_Size
+     * @param IDexamen IDseccion IDpregunta
+     * @return getRespuestas_size
+     */
     public int GET_Respuestas_Size(int IDexamen,int IDseccion,int IDpregunta)
     {
         int result=-1;
@@ -278,7 +347,11 @@ public class Principal{
         ////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////
 
-
+    /*
+     * @name Get_Nota
+     * @param IDexamen
+     * @return nota 0-100
+     */
     public int Get_Nota(int IDexamen)
     {
         int[] result= new int[]{0,0};
