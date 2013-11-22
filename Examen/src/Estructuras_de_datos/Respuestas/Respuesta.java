@@ -18,6 +18,10 @@ public class Respuesta implements I_Respuesta{
     public String getRespuesta() {
         return Respuesta;
     }
+    
+    public boolean _Correcta() {
+        return  this.Correcta;
+    }
 
     public boolean isCorrecta() {
         if((this.Correcta==this.Evaluada)&&(this.Correcta==true))

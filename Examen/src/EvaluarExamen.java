@@ -203,7 +203,7 @@ public class EvaluarExamen extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(null,Instacia.Get_Nota(IDexamen));
+        JOptionPane.showMessageDialog(null,"usted ha obtenido una nota de -->"+Instacia.Get_Nota(IDexamen));
       
     }//GEN-LAST:event_jButton1ActionPerformed
 

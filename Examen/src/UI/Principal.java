@@ -230,7 +230,7 @@ public class Principal{
                     {
                         _row[0]=i;
                         _row[1]=this.Examenes.get(IDexamen).GET_Seccion(IDseccion).getPregunta(IDpregunta).getRespuesta(i).getRespuesta();
-                        _row[2]=this.Examenes.get(IDexamen).GET_Seccion(IDseccion).getPregunta(IDpregunta).getRespuesta(i).isCorrecta();
+                        _row[2]=this.Examenes.get(IDexamen).GET_Seccion(IDseccion).getPregunta(IDpregunta).getRespuesta(i)._Correcta();
                         model.addRow(_row);
                     }
                 }
@@ -287,5 +287,4 @@ public class Principal{
         else
             return 0;
     }
-    
 }
